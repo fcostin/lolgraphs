@@ -48,13 +48,13 @@ def main():
     marine_hist, _ = numpy.histogram(duration[winner == team['marines']], bin_edges)
     alien_hist, _ = numpy.histogram(duration[winner == team['aliens']], bin_edges)
     rows = numpy.vstack((marine_hist, alien_hist))
-    pylab.figure()
+    pylab.figure(figsize = (5, 4))
     widths = bin_edges[1:] - bin_edges[:-1]
     pylab.bar(bin_edges[:-1], alien_hist, widths, color = 'orange', label = 'marine wins')
     pylab.bar(bin_edges[:-1], marine_hist, widths, bottom = alien_hist, color = 'blue', label = 'alien wins')
     pylab.xlabel('round duration (minutes)')
     pylab.legend(loc = 'upper right')
-    pylab.show()
+    pylab.savefig('imbalance_versus_time.png', bbox_inches = 'tight')
 
 if __name__ == '__main__':
     main()
